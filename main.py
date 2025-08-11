@@ -34,7 +34,22 @@ def health():
     }
 @app.post("/kickoff")
 def kickoff(req: KickoffRequest):
-    return {"echo_query": req.query}
+    if not req.query:
+        return {"result": "No query provided"}
+
+    try:
+        resp = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "Sei un assistente finanziario amichevole e preciso."},
+                {"role": "user", "content": req.query}
+            ],
+            temperature=0.2
+        )
+        answer = resp.choices[0].message.content
+        return {"result": answer}
+    except Exception as e:
+        return {"error": "Unhandled", "detail": str(e)}
 
 if __name__ == "__main__":
     import os
