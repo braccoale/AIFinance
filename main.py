@@ -1,7 +1,9 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 import os
-import uvicorn
+from fastapi import FastAPI
+from pydantic import BaseModel
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = FastAPI(title="AI Finance Orchestrator")
 
@@ -18,8 +20,18 @@ def health():
 
 @app.post("/kickoff")
 def kickoff(req: KickoffRequest):
-    q = req.query or "no-query"
-    return {"result": f"orchestrator online - query: {q}"}
+    if not req.query:
+        return {"result": "No query provided"}
+    
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "Sei un assistente finanziario amichevole e preciso."},
+            {"role": "user", "content": req.query}
+        ]
+    )
+    answer = response.choices[0].message["content"]
+    return {"result": answer}
 
 
 if __name__ == "__main__":
