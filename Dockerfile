@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8080
 # Avvia uvicorn direttamente
 # CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
-CMD ["bash","-lc","uvicorn main:app --host 0.0.0.0 --port ${PORT:-8080}"]
+CMD ["uvicorn","main:app","--host","0.0.0.0","--port","8080","--log-level","info"]
