@@ -24,7 +24,7 @@ def kickoff(req: KickoffRequest):
         return {"result": "No query provided"}
 
     resp = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         messages=[
             {"role":"system","content":"Sei un assistente finanziario amichevole e preciso."},
             {"role":"user","content": req.query}
