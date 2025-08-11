@@ -1,17 +1,8 @@
 fastapi==0.111.0
 uvicorn==0.30.1
-gunicorn==22.0.0
-python-multipart==0.0.9
-flask
-requests
 openai>=1.40,<2
 crewai>=0.51
 crewai-tools>=0.3.0
 langchain>=0.2.7,<0.3
 langchain-community>=0.2.7,<0.3
 langchain-openai>=0.1.20,<0.2
-
-
-
-
-
