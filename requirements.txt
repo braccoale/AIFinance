@@ -6,7 +6,10 @@ flask
 requests
 openai>=1.40,<2
 crewai>=0.51
-
+crewai-tools>=0.3.0
+langchain>=0.2.7,<0.3
+langchain-community>=0.2.7,<0.3
+langchain-openai>=0.1.20,<0.2
 
 
 
