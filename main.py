@@ -34,28 +34,7 @@ def health():
     }
 @app.post("/kickoff")
 def kickoff(req: KickoffRequest):
-    if not req.query:
-        return {"error": "no_query"}
-
-    try:
-        resp = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "Sei un assistente finanziario amichevole e preciso."},
-                {"role": "user", "content": req.query},
-            ],
-            temperature=0.2,
-        )
-        answer = resp.choices[0].message.content
-        return {"result": answer}
-
-    except AuthenticationError as e:
-        return {"error": "auth", "detail": str(e)}
-    except RateLimitError as e:
-        return {"error": "rate_limit", "detail": str(e)}
-    except (APIConnectionError, APIError) as e:
-        return {"error": "api", "detail": str(e)}
-
+    return {"echo_query": req.query}
 
 if __name__ == "__main__":
     import os
