@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import openai
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = FastAPI(title="AI Finance Orchestrator")
 
@@ -22,15 +22,15 @@ def health():
 def kickoff(req: KickoffRequest):
     if not req.query:
         return {"result": "No query provided"}
-    
-    response = openai.ChatCompletion.create(
+
+    resp = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "Sei un assistente finanziario amichevole e preciso."},
-            {"role": "user", "content": req.query}
+            {"role":"system","content":"Sei un assistente finanziario amichevole e preciso."},
+            {"role":"user","content": req.query}
         ]
     )
-    answer = response.choices[0].message["content"]
+    answer = resp.choices[0].message.content
     return {"result": answer}
 
 
