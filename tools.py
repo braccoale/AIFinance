@@ -24,4 +24,4 @@ def fund_tool(ticker: str) -> str:
 @tool("kb_lookup")
 def kb_tool(question: str) -> str:
     "Stub: RAG/KB non ancora collegato."
-    return "[kb_stub] KB vuota."
+    return "[kb_stub] KB vuota." 
