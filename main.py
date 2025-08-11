@@ -1,7 +1,7 @@
 import os
 from fastapi import FastAPI
 from pydantic import BaseModel
-import openai
+from openai import OpenAI  
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
