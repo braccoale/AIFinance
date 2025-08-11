@@ -44,7 +44,8 @@ def kickoff(req: KickoffRequest):
                 {"role": "system", "content": "Sei un assistente finanziario amichevole e preciso."},
                 {"role": "user", "content": req.query}
             ],
-            temperature=0.2
+            temperature=0.2,
+            max_tokens=250
         )
         answer = resp.choices[0].message.content
         return {"result": answer}
