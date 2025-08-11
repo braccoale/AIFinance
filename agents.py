@@ -1,13 +1,15 @@
-
+# agents.py
 from crewai import Agent
 
-from .tools import (
+# PRIMA: from .tools import (...)
+from tools import (
     price_tool,
     news_tool,
     ind_tool,
     fund_tool,
     kb_tool,
 )
+
 
 __all__ = [
     "analyst_news",
