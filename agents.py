@@ -1,14 +1,3 @@
-"""
-Definition of CrewAI agents for the portfolio assistant.
-
-Each agent encapsulates a specific analytical role (news, technical
-analysis, fundamentals, portfolio/risk) and is equipped with a set of
-tools.  Modify the `backstory` and `goal` fields to align the agent's
-behaviour with your personal investment philosophy.
-
-For production use you'll likely want to refine the allowed tools,
-enable delegation where appropriate, and tweak personality traits.
-"""
 
 from crewai import Agent
 
