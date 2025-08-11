@@ -1,18 +1,3 @@
-"""
-Utility module defining the tools used by the CrewAI agents.
-
-Each tool is exposed as a `langchain.tools.Tool` instance wrapping a
-simple Python function.  In this skeleton all tools return static
-strings.  Replace the bodies of these functions with your own logic
-that fetches real data (e.g. from financial APIs, RSS feeds, or your
-knowledge base).
-
-The descriptions attached to each Tool should briefly explain when
-agents ought to use it.  When adding new tools, be concise but
-informative – the agent relies on these descriptions to choose the
-appropriate tool.
-"""
-
 from __future__ import annotations
 
 from typing import List
