@@ -1,14 +1,20 @@
+# Usa Python come base
 FROM python:3.11-slim
 
+# Imposta la directory di lavoro
 WORKDIR /app
 
-COPY requirements.txt .
+# Copia file requirements
+COPY requirements.txt requirements.txt
+
+# Installa dipendenze
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copia tutti i file nella directory di lavoro
 COPY . .
 
-# NON forzare ENV PORT qui: lasciamo che Cloud Run la imposti
+# Esponi la porta
 EXPOSE 8080
 
-# Usa la shell per espandere $PORT; fallback 8080 se non presente
-CMD ["bash","-lc","uvicorn main:app --host 0.0.0.0 --port ${PORT:-8080}"]
+# Comando per avviare l'app Flask
+CMD ["python", "main.py"]
